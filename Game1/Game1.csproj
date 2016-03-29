@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
+    <Compile Include="Content\FileManager.cs" />
     <Compile Include="FadeAnimation.cs" />
     <Compile Include="GameScreen.cs" />
     <Compile Include="ScreenMangaer.cs" />
@@ -57,12 +58,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fade.png" />
+    <Content Include="Content\Splash Screen\ninja.jpg" />
+    <Content Include="Content\Splash Screen\ninja2.jpg" />
+    <Content Include="Content\Splash Screen\NinjaScroll.jpg" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\Splash.cme">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\TimesNewRoman12.spritefont" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

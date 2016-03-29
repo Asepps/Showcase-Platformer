@@ -14,7 +14,7 @@ namespace Game1
     public class GameScreen
     {
         protected ContentManager content;
-
+        protected List<List<string>> attributes, contents;
 
         public virtual void Intialize() { }
         public virtual void LoadContent(ContentManager Content) 
