@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+
 namespace Game1
 {
     public class SplashScreen : GameScreen
@@ -20,6 +21,8 @@ namespace Game1
        List<FadeAnimation> fade;
        List<Texture2D> images;
 
+       FileManager fileManager;
+
        int imageNumber;
        
 
@@ -28,9 +31,13 @@ namespace Game1
            base.LoadContent(Content);
            if (font == null)
                font = content.Load<SpriteFont>("TimesNewRoman12");
+           imageNumber = 0;
+           fileManager = new FileManager();
            fade = new List<FadeAnimation>();
            images = new List<Texture2D>();
-           imageNumber = 0;
+
+           fileManager.LoadContent("Load/splash.cme", attributes, contents);
+
            for (int i = 0; i < attributes.Count; i++)
            {
                for (int j = 0; j < attributes[i].Count; j++)
@@ -54,14 +61,17 @@ namespace Game1
        public override void UnloadContent()
        {
            base.UnloadContent();
+           fileManager = null;
        }
        public override void Update(GameTime gametime)
        {
            keyState = Keyboard.GetState();
-           if (keyState.IsKeyDown(Keys.Enter))
-           ScreenManager.Instance.AddScreen(new TitleScreen());
-           base.Update(gametime);
+           //if (keyState.IsKeyDown(Keys.Enter))
+           //ScreenManager.Instance.AddScreen(new TitleScreen());
+          
 
+
+           fade[imageNumber].Update(gametime);
            
        }
        public override void Draw(SpriteBatch spritebatch)
