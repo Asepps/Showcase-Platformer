@@ -54,7 +54,8 @@ namespace Game1
            for (int i = 0; i < fade.Count; i++)
            {
                fade[i].LoadContent(content, images[i], "", Vector2.Zero);
-               fade[i].Scale = 3.08f;
+
+               fade[i].Scale = 3.08f; 
                fade[i].IsActiv = true;
            }
        }

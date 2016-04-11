@@ -48,9 +48,15 @@ namespace Game1
                         if (newLine != String.Empty)
                         {
                             if (type == LoadType.Contents)
-                                if(newLine == "Load ="){
                                     tempContents.Add(newLine);
-                                }
+
+                                //BAKER -debug why this is adding Load = to the list
+
+                            else if (newLine ==	"Load =")
+                            {
+
+                            }
+                                
                             else
                                 tempAttributes.Add(newLine);
                         }
