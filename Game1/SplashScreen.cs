@@ -53,7 +53,7 @@ namespace Game1
            }
            for (int i = 0; i < fade.Count; i++)
            {
-               fade[i].LoadContent(content, images[i], "", Vector2.Zero);
+               fade[i].LoadContent(content, images[i], "", new Vector2 (269, 201 ));
 
                fade[i].Scale = 3.08f; 
                fade[i].IsActiv = true;
@@ -69,10 +69,14 @@ namespace Game1
            keyState = Keyboard.GetState();
            //if (keyState.IsKeyDown(Keys.Enter))
            //ScreenManager.Instance.AddScreen(new TitleScreen());
-          
-
 
            fade[imageNumber].Update(gametime);
+           if (fade[imageNumber].Alpha == 0.0f)
+               imageNumber++;
+           if(imageNumber >= fade.Count - 1 || keyState.IsKeyDown(Keys.Z))
+           {
+               ScreenManager.Instance.AddScreen(new TitleScreen());
+           }
            
        }
        public override void Draw(SpriteBatch spritebatch)

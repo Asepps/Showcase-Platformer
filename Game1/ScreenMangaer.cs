@@ -77,6 +77,18 @@ namespace Game1
             fade.Alpha = 0.0f;
             fade.ActivateValue = 1.0f;
         }
+        public void AddScreen(GameScreen screen, float alpha)
+        {
+            transition = true;
+            newScreen = screen;
+            fade.IsActiv = true;
+            fade.Alpha = 0.0f;
+            fade.ActivateValue = 1.0f;
+            if (alpha != 1.0f)
+                fade.Alpha = 1.0f - alpha;
+            else
+                fade.Alpha = alpha;
+        }
         public void Initialize() 
         {
             currentScreen = new SplashScreen();
