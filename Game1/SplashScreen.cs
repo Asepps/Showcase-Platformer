@@ -75,7 +75,10 @@ namespace Game1
                imageNumber++;
            if(imageNumber >= fade.Count - 1 || keyState.IsKeyDown(Keys.Z))
            {
-               ScreenManager.Instance.AddScreen(new TitleScreen());
+               if (fade[imageNumber].Alpha != 1.0f)
+                   ScreenManager.Instance.AddScreen(new TitleScreen(), fade[imageNumber].Alpha);
+               else
+                   ScreenManager.Instance.AddScreen(new TitleScreen());
            }
            
        }

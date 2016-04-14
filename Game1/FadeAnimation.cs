@@ -18,6 +18,7 @@ namespace Game1
         float activateValue;
         bool stopUpdating;
         float defaultAlpha;
+        public bool Increase;
 
         public TimeSpan Timer
         {
@@ -57,7 +58,7 @@ namespace Game1
             
            base.LoadContent(Content, image, text, position);
            increase = false;
-           fadeSpeed = 1.0f;
+           fadeSpeed = 0.6f;
            defaultTime = new TimeSpan(0, 0, 1);
            timer = defaultTime;
            activateValue = 0.0f;
