@@ -18,7 +18,7 @@ namespace Game1
         protected InputManager inputManager;
 
         public virtual void Intialize() { }
-        public virtual void LoadContent(ContentManager Content)
+        public virtual void LoadContent(ContentManager Content, InputManager inputManager)
         {
             content = new ContentManager(Content.ServiceProvider, "Content");
             attributes = new List<List<string>>();
