@@ -16,7 +16,7 @@ namespace Game1
     public class SplashScreen : GameScreen
     {
         
-       KeyboardState keyState;
+     
        SpriteFont font;
        List<FadeAnimation> fade;
        List<Texture2D> images;
@@ -26,9 +26,9 @@ namespace Game1
        int imageNumber;
        
 
-       public override void LoadContent(ContentManager Content)
+       public override void LoadContent(ContentManager Content, InputManager inputManager)
        {
-           base.LoadContent(Content);
+           base.LoadContent(Content, inputManager);
            if (font == null)
                font = content.Load<SpriteFont>("TimesNewRoman12");
            imageNumber = 0;
@@ -66,19 +66,16 @@ namespace Game1
        }
        public override void Update(GameTime gametime)
        {
-           keyState = Keyboard.GetState();
-           //if (keyState.IsKeyDown(Keys.Enter))
-           //ScreenManager.Instance.AddScreen(new TitleScreen());
+           inputManager.Update();
 
            fade[imageNumber].Update(gametime);
            if (fade[imageNumber].Alpha == 0.0f)
                imageNumber++;
-           if(imageNumber >= fade.Count - 1 || keyState.IsKeyDown(Keys.Z))
+           if(imageNumber >= fade.Count - 1 || inputManager.KeyPressed(Keys.Z))
            {
                if (fade[imageNumber].Alpha != 1.0f)
-                   ScreenManager.Instance.AddScreen(new TitleScreen(), fade[imageNumber].Alpha);
-               else
-                   ScreenManager.Instance.AddScreen(new TitleScreen());
+                   ScreenManager.Instance.AddScreen(new TitleScreen(), inputManager);
+            
            }
            
        }

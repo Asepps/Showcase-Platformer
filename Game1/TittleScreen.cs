@@ -13,12 +13,12 @@ namespace Game1
 {
     public class TitleScreen : GameScreen
     {
-       KeyboardState keyState;
+       
        SpriteFont font;
 
-       public override void LoadContent(ContentManager Content)
+       public override void LoadContent(ContentManager Content, InputManager inputManager)
        {
-           base.LoadContent(Content);
+           base.LoadContent(Content, inputManager);
            if (font == null)
                font = content.Load<SpriteFont>("TimesNewRoman12");
        }
@@ -28,9 +28,9 @@ namespace Game1
        }
        public override void Update(GameTime gametime)
        {
-           keyState = Keyboard.GetState();
-           if (keyState.IsKeyDown(Keys.B))
-               ScreenManager.Instance.AddScreen(new SplashScreen());
+           inputManager.Update();
+           if (inputManager.KeyPressed(Keys.B))
+               ScreenManager.Instance.AddScreen(new SplashScreen(), inputManager);
        }
        public override void Draw(SpriteBatch spritebatch)
        {
