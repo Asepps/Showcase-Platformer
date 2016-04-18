@@ -15,26 +15,31 @@ namespace Game1
     {
        
        SpriteFont font;
+       MenuManager menu;
 
        public override void LoadContent(ContentManager Content, InputManager inputManager)
        {
            base.LoadContent(Content, inputManager);
            if (font == null)
                font = content.Load<SpriteFont>("TimesNewRoman12");
+           menu = new MenuManager();
+           menu.LoadContent(content, "Title");
        }
        public override void UnloadContent()
        {
            base.UnloadContent();
+           menu.UnloadContent();
        }
        public override void Update(GameTime gametime)
        {
+           menu.Update(gametime);
            inputManager.Update();
            if (inputManager.KeyPressed(Keys.B))
                ScreenManager.Instance.AddScreen(new SplashScreen(), inputManager);
        }
        public override void Draw(SpriteBatch spritebatch)
        {
-           spritebatch.DrawString(font, "TitleScreen", new Vector2(200, 300), Color.Black);
+            menu.Draw(spritebatch);
        }
     }
  }

@@ -43,10 +43,11 @@ namespace Game1
             }
         }
 
-        private void SetAnimationd()
+        private void SetAnimations()
         {
             Vector2 posAdd = position;
-            Vector2 dimensions;
+            tempAnimation = new List<Animation>();
+            Vector2 dimensions = Vector2.Zero;
             for (int i = 0; i < menuImages.Count; i++)
             {
                 
@@ -56,24 +57,26 @@ namespace Game1
                     {
                         case"Fade":
                             tempAnimation.Add(new FadeAnimation());
-                            tempAnimation[tempAnimation.Count - 1].LoadContent(content, menuImages[i], menuItems[i], position)
+                            tempAnimation[tempAnimation.Count - 1].LoadContent(content, menuImages[i], menuItems[i], posAdd);
                             break;
 
                     }
                 }
+                if(tempAnimation.Count > 0)
                 animation.Add(tempAnimation);
                 tempAnimation = new List<Animation>();
-                dimensions = new Vector2(font.MeasureString(menuItems[i]).X + menuImages[i].Width,
-                    font.MeasureString(menuItems[i]).Y + menuImages[i].Height);
+                
+                dimensions = new Vector2(font.MeasureString(menuItems[i]).X,
+                    font.MeasureString(menuItems[i]).Y);
 
                 if(axis ==1)
                 {
-                    pos.X += dimensions.X;
+                    posAdd.X += dimensions.X;
 
                 }
                 else
                 {
-                    pos.Y += dimensions.Y;
+                    posAdd.Y += dimensions.Y;
                 }
 
             }
@@ -121,12 +124,17 @@ namespace Game1
                             source = new Rectangle(int.Parse(temp[0]),
                                 int.Parse(temp[1]), int.Parse(temp[2]), int.Parse(temp[3]));
                             break;
+                        case "Animation":
+                            animationTypes.Add(contents[i][j]);
+                            break;
 
                     }
 
                     
                 }
             }
+            SetMenuItems();
+            SetAnimations();
         }
         public void UnloadContent()
         {
@@ -140,11 +148,28 @@ namespace Game1
         }
         public void Update(GameTime gametime)
         {
-
+            for(int i = 0; i < animation.Count; i++)
+            {
+                for (int j = 0; j < animation[i].Count; j++)
+                {
+                    if (itemNumber == i)
+                        animation[i][j].IsActiv = true;
+                    else
+                        animation[i][j].IsActiv = false;
+                    animation[i][j].Update(gametime);
+                }
+                    
+            }
         }
         public void Draw(SpriteBatch spritebatch)
         {
-
+            for(int i = 0; i < animation.Count; i++)
+            {
+                for (int j = 0; j < animation [i].Count; j++)
+                {
+                    animation[i][j].Draw(spritebatch);
+                }
+            }
         }
     }
 }
