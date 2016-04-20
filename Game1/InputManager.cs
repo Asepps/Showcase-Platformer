@@ -24,6 +24,7 @@ namespace Game1
 
         public void Update()
         {
+            
             prevKeyState = keyState;
             keyState = Keyboard.GetState();
         }

@@ -44,6 +44,7 @@ namespace Game1
 
         FadeAnimation fade = new FadeAnimation();
         Texture2D fadeTexture;
+        Texture2D nullImage;
         InputManager inputManager;
         
 
@@ -62,6 +63,10 @@ namespace Game1
         {
             get { return dimensions;}
             set { dimensions = value;}
+        }
+        public Texture2D nullImage
+        {
+            get { return nullImage; }
         }
         #endregion
 
@@ -103,6 +108,7 @@ namespace Game1
         {
             content = new ContentManager(Content.ServiceProvider, "Content");
             currentScreen.LoadContent(Content, inputManager);
+            nullImage = content.Load<Texture2D>("null");
             fadeTexture = content.Load<Texture2D>("fade");
             fade.LoadContent(content, fadeTexture, "", Vector2.Zero);
             fade.Scale = dimensions.X;

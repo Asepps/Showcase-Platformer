@@ -55,9 +55,14 @@
 /processorParam:TextureFormat=Color
 /build:Splash Screen/wayofNinja.jpg
 
-#begin Splash Screen/Menu.spritefont
+#begin Menu.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:TextureFormat=Compressed
-/build:Splash Screen/Menu.spritefont
+/build:Menu.spritefont
+
+#begin Splash Screen/null.xcf
+/importer:
+/processor:
+/build:Splash Screen/null.xcf
 

@@ -17,7 +17,7 @@ namespace Game1
        SpriteFont font;
        MenuManager menu;
 
-       public override void LoadContent(ContentManager Content, InputManager inputManager)
+       public override void LoadContent(ContentManager Content,InputManager inputManager)
        {
            base.LoadContent(Content, inputManager);
            if (font == null)
@@ -32,14 +32,13 @@ namespace Game1
        }
        public override void Update(GameTime gametime)
        {
-           menu.Update(gametime);
-           inputManager.Update();
+           menu.Update(gametime, inputManager);
            if (inputManager.KeyPressed(Keys.B))
                ScreenManager.Instance.AddScreen(new SplashScreen(), inputManager);
        }
        public override void Draw(SpriteBatch spritebatch)
        {
-            menu.Draw(spritebatch);
+           menu.Draw(spritebatch);
        }
     }
  }

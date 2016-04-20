@@ -42,12 +42,12 @@ namespace Game1
 
         public virtual void LoadContent(ContentManager Content, Texture2D image, string text, Vector2 position)
         {
-            content = new ContentManager(Content.ServiceProvider, " Content");
+            content = new ContentManager(Content.ServiceProvider, "Content");
             this.image = image;
             this.text = text;
             this.position = position;
-            if ( text != String.Empty)
-                font = content.Load<SpriteFont>("AnimationFont");
+            if (text != String.Empty)
+                font = content.Load<SpriteFont>("Menu");
             color = new Color(114, 77, 255);
             if (image != null)
                 sourceRect = new Rectangle(0 , 0 ,image.Width, image.Height);
@@ -64,9 +64,6 @@ namespace Game1
             position = Vector2.Zero;
             sourceRect = Rectangle.Empty;
             image = null;
-            
-            
-            
         }
         public virtual void Update(GameTime gameTime)
         {

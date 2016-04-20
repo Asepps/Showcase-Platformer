@@ -77,19 +77,19 @@ namespace Game1
                 while (!reader.EndOfStream)
                 {
                     string line = reader.ReadLine();
-                    if (line.Contains("EndLoad=") && line.Contains(identifier))
+                    if (line.Contains("EndLoad =") && line.Contains(identifier))
                     {
                         identifierFound = false;
                         break;
                     }
-                    else if(line.Contains("Load=") && line.Contains(identifier))
+                    else if(line.Contains("Load =") && line.Contains(identifier))
                     {
                         identifierFound = true;
                         continue;
                     }
                     if (identifierFound)
                     {
-                        if (line.Contains("Load="))
+                        if (line.Contains("Load ="))
                         {
                             tempAttributes = new List<string>();
                             line = line.Remove(0, line.IndexOf("=") + 1);

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Game1
 {
@@ -16,19 +17,21 @@ namespace Game1
         List<string> animationTypes;
         List<Texture2D> menuImages;
         List<List<Animation>> animation;
-
+        List<List<string>> attributes, contents;
+       
         ContentManager content;
 
         FileManager fileManager;
 
         Vector2 position;
         int axis;
-        List<List<string>> attributes, contents;
-        List<Animation> tempAnimation;
+        
+        List<Animation> tempAnimation;  
         Rectangle source;
         SpriteFont font;
 
         int itemNumber;
+        string align;
         private void SetMenuItems()
         {
             for (int i = 0; i < menuItems.Count; i++)
@@ -45,19 +48,18 @@ namespace Game1
 
         private void SetAnimations()
         {
-            Vector2 posAdd = position;
+            Vector2 pos = position;
             tempAnimation = new List<Animation>();
             Vector2 dimensions = Vector2.Zero;
             for (int i = 0; i < menuImages.Count; i++)
             {
-                
-                for (int j = 0; j < animationTypes.Count; i++)
+                for (int j = 0; j < animationTypes.Count; j++)
                 {
                     switch (animationTypes[j])
                     {
                         case"Fade":
                             tempAnimation.Add(new FadeAnimation());
-                            tempAnimation[tempAnimation.Count - 1].LoadContent(content, menuImages[i], menuItems[i], posAdd);
+                            tempAnimation[tempAnimation.Count - 1].LoadContent(content, menuImages[i], menuItems[i], pos);
                             break;
 
                     }
@@ -71,12 +73,12 @@ namespace Game1
 
                 if(axis ==1)
                 {
-                    posAdd.X += dimensions.X;
+                    pos.X += dimensions.X;
 
                 }
                 else
                 {
-                    posAdd.Y += dimensions.Y;
+                    pos.Y += dimensions.Y;
                 }
 
             }
@@ -89,16 +91,17 @@ namespace Game1
             menuItems = new List<string>();
             animationTypes = new List<string>();
             menuImages = new List<Texture2D>();
+            fileManager = new FileManager();
             animation = new List<List<Animation>>();
             attributes = new List<List<string>>();
             contents = new List<List<string>>();
-            
+            itemNumber = 0;
             position = Vector2.Zero;
-            fileManager.LoadContent("Load/Menus.cme", attributes, contents, id);
+            fileManager.LoadContent("../../../../Load/Menus.cme", attributes, contents, id);
 
             for (int i = 0; i < attributes.Count; i++)
             {
-                for (int j = 0; j < attributes.Count; i++)
+                for (int j = 0; j < attributes[i].Count; j++)
                 {
                     switch (attributes[i][j])
                     {
@@ -127,12 +130,15 @@ namespace Game1
                         case "Animation":
                             animationTypes.Add(contents[i][j]);
                             break;
-
+                        case "Align":
+                            align = contents[i][j];
+                               break;
                     }
 
-                    
+      
                 }
             }
+            
             SetMenuItems();
             SetAnimations();
         }
@@ -146,8 +152,28 @@ namespace Game1
             menuImages.Clear();
             animationTypes.Clear();
         }
-        public void Update(GameTime gametime)
+        public void Update(GameTime gametime, InputManager inputManager)
         {
+            inputManager.Update();
+            if (axis == 1)
+            {
+                if (inputManager.KeyPressed(Keys.Right, Keys.D))
+                    itemNumber++;
+                else if (inputManager.KeyPressed(Keys.Left, Keys.A))
+                    itemNumber--;   
+            }
+            else
+            {
+                if (inputManager.KeyPressed(Keys.Down, Keys.S))
+                    itemNumber++;
+                else if (inputManager.KeyPressed(Keys.Up, Keys.W))
+                    itemNumber--;
+            }
+            if (itemNumber < 0)
+                itemNumber = 0;
+            else if (itemNumber > menuItems.Count - 1)
+                itemNumber = menuItems.Count - 1;
+
             for(int i = 0; i < animation.Count; i++)
             {
                 for (int j = 0; j < animation[i].Count; j++)
@@ -165,7 +191,7 @@ namespace Game1
         {
             for(int i = 0; i < animation.Count; i++)
             {
-                for (int j = 0; j < animation [i].Count; j++)
+                for (int j = 0; j < animation[i].Count; j++)
                 {
                     animation[i][j].Draw(spritebatch);
                 }

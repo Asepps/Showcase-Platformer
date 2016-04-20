@@ -36,7 +36,7 @@ namespace Game1
            fade = new List<FadeAnimation>();
            images = new List<Texture2D>();
 
-           fileManager.LoadContent("Load/splash.cme", attributes, contents);
+           fileManager.LoadContent("../../../../Load/splash.cme", attributes, contents);
 
            for (int i = 0; i < attributes.Count; i++)
            {

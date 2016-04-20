@@ -28,8 +28,7 @@ namespace Game1
         public float FadeSpeed
         {
             get { return fadeSpeed; }
-            set { fadeSpeed = value; }
-            
+            set { fadeSpeed = value; }  
         }
 
         public override float Alpha
@@ -55,7 +54,6 @@ namespace Game1
         }
         public override void LoadContent(ContentManager Content, Texture2D image, string text, Vector2 position)
         {
-            
            base.LoadContent(Content, image, text, position);
            increase = false;
            fadeSpeed = 0.6f;
@@ -97,6 +95,7 @@ namespace Game1
             else
             {
                 alpha = defaultAlpha;
+                stopUpdating = false;
             }
         }
 
