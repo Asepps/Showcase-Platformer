@@ -64,7 +64,7 @@ namespace Game1
             get { return dimensions;}
             set { dimensions = value;}
         }
-        public Texture2D nullImage
+        public Texture2D NullImage
         {
             get { return nullImage; }
         }

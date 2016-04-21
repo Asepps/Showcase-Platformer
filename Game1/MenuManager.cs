@@ -14,7 +14,7 @@ namespace Game1
     public class MenuManager
     {
         List<string> menuItems;
-        List<string> animationTypes;
+        List<string> animationTypes, linkType, linkID;
         List<Texture2D> menuImages;
         List<List<Animation>> animation;
         List<List<string>> attributes, contents;
@@ -37,7 +37,7 @@ namespace Game1
             for (int i = 0; i < menuItems.Count; i++)
             {
                 if (menuImages.Count == i)
-                    menuImages.Add(null);
+                    menuImages.Add(ScreenManager.Instance.NullImage);
             }
             for (int i = 0; i < menuImages.Count; i++)
             {
@@ -48,11 +48,40 @@ namespace Game1
 
         private void SetAnimations()
         {
-            Vector2 pos = position;
-            tempAnimation = new List<Animation>();
             Vector2 dimensions = Vector2.Zero;
+            Vector2 pos = Vector2.Zero;
+            if (align.Contains("Center"))
+            {
+                for (int i = 0; i < menuItems.Count; i++)
+                {
+                    dimensions.X += font.MeasureString(menuItems[i]).X + menuImages[i].Width;
+                    dimensions.Y += font.MeasureString(menuItems[i]).Y + menuImages[i].Height;
+                }
+                if (axis == 1)
+                {
+                    pos.X = (ScreenManager.Instance.Dimensions.X - dimensions.X) /2;
+                }
+                else if (axis == 2)
+                {
+                    pos.Y = (ScreenManager.Instance.Dimensions.Y - dimensions.Y) / 2;
+                }
+            }
+            else
+            {
+                    pos = position;
+
+            }
+            tempAnimation = new List<Animation>();
+            
             for (int i = 0; i < menuImages.Count; i++)
             {
+                dimensions = new Vector2(font.MeasureString(menuItems[i]).X + menuImages[i].Width,
+                    font.MeasureString(menuItems[i]).Y + menuImages[i].Height);
+                if (axis == 1)
+                    pos.Y = (ScreenManager.Instance.Dimensions.Y - dimensions.Y) / 2;
+                else
+                    pos.X = (ScreenManager.Instance.Dimensions.X - dimensions.X) / 2;
+
                 for (int j = 0; j < animationTypes.Count; j++)
                 {
                     switch (animationTypes[j])
@@ -60,6 +89,7 @@ namespace Game1
                         case"Fade":
                             tempAnimation.Add(new FadeAnimation());
                             tempAnimation[tempAnimation.Count - 1].LoadContent(content, menuImages[i], menuItems[i], pos);
+                            tempAnimation[tempAnimation.Count - 1].Font = font;
                             break;
 
                     }
@@ -68,9 +98,6 @@ namespace Game1
                 animation.Add(tempAnimation);
                 tempAnimation = new List<Animation>();
                 
-                dimensions = new Vector2(font.MeasureString(menuItems[i]).X,
-                    font.MeasureString(menuItems[i]).Y);
-
                 if(axis ==1)
                 {
                     pos.X += dimensions.X;
@@ -96,6 +123,9 @@ namespace Game1
             attributes = new List<List<string>>();
             contents = new List<List<string>>();
             itemNumber = 0;
+            align = "Center";
+            linkType = new List<string>();
+            linkID = new List<string>();
             position = Vector2.Zero;
             fileManager.LoadContent("../../../../Load/Menus.cme", attributes, contents, id);
 
@@ -133,9 +163,14 @@ namespace Game1
                         case "Align":
                             align = contents[i][j];
                                break;
+                        case"LinkType":
+                               linkType.Add(contents[i][j]);
+                               break;
+                        case"linkID":
+                            linkType.Add(contents[i][j]);
+                            break;
                     }
 
-      
                 }
             }
             
@@ -169,6 +204,16 @@ namespace Game1
                 else if (inputManager.KeyPressed(Keys.Up, Keys.W))
                     itemNumber--;
             }
+            if(inputManager.KeyPressed(Keys.Enter, Keys.Z))
+            {
+                if (linkType [itemNumber]=="Screen")
+                {
+                    Type newClass = Type.GetType("Game1." + linkID[itemNumber]);
+                    ScreenManager.Instance.AddScreen((GameScreen)Activator.CreateInstance(newClass), inputManager);
+                }
+                    
+            }
+
             if (itemNumber < 0)
                 itemNumber = 0;
             else if (itemNumber > menuItems.Count - 1)

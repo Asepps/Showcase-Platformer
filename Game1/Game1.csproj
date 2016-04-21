@@ -39,11 +39,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
+    <Compile Include="Entity.cs" />
     <Compile Include="FileManager.cs" />
     <Compile Include="FadeAnimation.cs" />
     <Compile Include="GameScreen.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="MenuManager.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="ScreenMangaer.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
@@ -60,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fade.png" />
+    <Content Include="Content\null.png" />
     <Content Include="Content\Splash Screen\ninja2.jpg" />
     <Content Include="Content\Splash Screen\wayofNinja.jpg" />
     <Content Include="Icon.ico" />
@@ -71,7 +74,6 @@
     <None Include="Content\Menu.spritefont" />
     <None Include="Content\TimesNewRoman12.spritefont" />
     <None Include="Load\Menus.cme" />
-    <None Include="Content\Splash Screen\null.xcf" />
     <None Include="Load\Splash.cme" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

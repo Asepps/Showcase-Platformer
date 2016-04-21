@@ -33,8 +33,6 @@ namespace Game1
        public override void Update(GameTime gametime)
        {
            menu.Update(gametime, inputManager);
-           if (inputManager.KeyPressed(Keys.B))
-               ScreenManager.Instance.AddScreen(new SplashScreen(), inputManager);
        }
        public override void Draw(SpriteBatch spritebatch)
        {
