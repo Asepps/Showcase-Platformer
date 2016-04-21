@@ -166,8 +166,8 @@ namespace Game1
                         case"LinkType":
                                linkType.Add(contents[i][j]);
                                break;
-                        case"linkID":
-                            linkType.Add(contents[i][j]);
+                        case"LinkID":
+                            linkID.Add(contents[i][j]);
                             break;
                     }
 
@@ -206,7 +206,7 @@ namespace Game1
             }
             if(inputManager.KeyPressed(Keys.Enter, Keys.Z))
             {
-                if (linkType [itemNumber]=="Screen")
+                if (linkType[itemNumber] == "Screen")
                 {
                     Type newClass = Type.GetType("Game1." + linkID[itemNumber]);
                     ScreenManager.Instance.AddScreen((GameScreen)Activator.CreateInstance(newClass), inputManager);
