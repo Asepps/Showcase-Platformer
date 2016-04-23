@@ -19,9 +19,9 @@ namespace Game1
             Vector2 tempFrames = Vector2.Zero;
 
             fileManager.LoadContent("../../../../Load/Player.cme", attributes, contents);
-            for (int i = 0; i < attributes[i].Count; i++)
+            for (int i = 0; i < attributes.Count; i++)
             {
-                for (int j = 0; j < attributes[j].Count; j++)
+                for (int j = 0; j < attributes[i].Count; j++)
                 {
                     switch ( attributes [i][j])
                     {
