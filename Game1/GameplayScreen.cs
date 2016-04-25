@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 namespace Game1
 {
-    class GameplayScreen : GameScreen
+    public class GameplayScreen : GameScreen
     {
         public override void LoadContent(ContentManager content, InputManager input)
         {

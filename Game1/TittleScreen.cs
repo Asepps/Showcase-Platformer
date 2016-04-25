@@ -32,6 +32,7 @@ namespace Game1
        }
        public override void Update(GameTime gametime)
        {
+           inputManager.Update();
            menu.Update(gametime, inputManager);
        }
        public override void Draw(SpriteBatch spritebatch)
