@@ -42,7 +42,7 @@ namespace Game1
            base.LoadContent(Content, image, text, position);
            frameCounter = 0;
            switchFrame = 100;
-           frames = new Vector2(10, 9);
+           frames = new Vector2(3, 4);
            currentFrame = new Vector2(0, 0);
            sourceRect = new Rectangle((int)currentFrame.X * FrameWidth, (int)currentFrame.Y * FrameHeight, FrameWidth, FrameHeight);
        }

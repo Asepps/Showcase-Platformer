@@ -58,13 +58,22 @@ namespace Game1
         public override void Update(GameTime gameTime, InputManager input)
         {
             moveAnimation.IsActiv = true;
+<<<<<<< HEAD
             if (input.KeyDown(Keys.Right, Keys.D))
                 moveAnimation.CurrentFrame = new Vector2(moveAnimation.CurrentFrame.X, 9);
+=======
+
+            if (input.KeyDown(Keys.Right, Keys.D))
+                moveAnimation.CurrentFrame = new Vector2(moveAnimation.CurrentFrame.X, 2);
+>>>>>>> 2d54b07... added new sprite
             else if (input.KeyDown(Keys.Left, Keys.A))
                 moveAnimation.CurrentFrame = new Vector2(moveAnimation.CurrentFrame.X, 1);
             else
                 moveAnimation.IsActiv = false;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2d54b07... added new sprite
             moveAnimation.Update(gameTime);
 
         }
