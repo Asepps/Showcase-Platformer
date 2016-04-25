@@ -62,14 +62,14 @@ namespace Game1
                    if (currentFrame.X * FrameWidth >= image.Width)
                        currentFrame.X = 0;
 
-                   sourceRect = new Rectangle((int)currentFrame.X * FrameWidth, (int)currentFrame.Y * FrameHeight, FrameHeight, FrameHeight);
+                   
                }
            }
            else
            {
                frameCounter = 0;
            }
-          
+           sourceRect = new Rectangle((int)currentFrame.X * FrameWidth, (int)currentFrame.Y * FrameHeight, FrameHeight, FrameHeight);
    
        }
     }
