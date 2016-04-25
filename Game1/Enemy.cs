@@ -19,9 +19,9 @@ namespace Game1
         {
             base.UnloadContent();
         }
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, InputManager input)
         {
-            base.Update(gameTime);
+            
         }
         public override void Draw(SpriteBatch spritebatch)
         {

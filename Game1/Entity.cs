@@ -12,7 +12,7 @@ namespace Game1
     public class Entity
     {
         protected int health;
-        protected Animation moveAnimation;
+        protected SpriteSheetAnimation moveAnimation;
         protected float moveSpeed;
 
         protected ContentManager content;
@@ -32,7 +32,7 @@ namespace Game1
         {
             content.Unload();
         }
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime,InputManager input)
         {
 
         }

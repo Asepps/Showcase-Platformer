@@ -26,7 +26,7 @@ namespace Game1
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            player.Update(gameTime);
+           
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

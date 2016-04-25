@@ -24,6 +24,7 @@ namespace Game1
        public Vector2 CurrentFrame
        {
            set { currentFrame = value; }
+           get { return currentFrame; }
            
        }
        public int FrameWidth
@@ -41,8 +42,9 @@ namespace Game1
            base.LoadContent(Content, image, text, position);
            frameCounter = 0;
            switchFrame = 100;
-           frames = new Vector2(10, 9);
+           frames = new Vector2(3, 4);
            currentFrame = new Vector2(0, 0);
+           sourceRect = new Rectangle((int)currentFrame.X * FrameWidth, (int)currentFrame.Y * FrameHeight, FrameWidth, FrameHeight);
        }
        public override void UnloadContent()
        {
@@ -61,7 +63,7 @@ namespace Game1
                    if (currentFrame.X * FrameWidth >= image.Width)
                        currentFrame.X = 0;
 
-                   sourceRect = new Rectangle((int)currentFrame.X * FrameWidth, (int)currentFrame.Y * FrameHeight, FrameWidth, FrameHeight);
+                   
                }
            }
            else
