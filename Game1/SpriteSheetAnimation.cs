@@ -13,6 +13,29 @@ namespace Game1
     {
        int frameCounter;
        int switchFrame;
+       
+       Vector2 frames;
+       Vector2 currentFrame;
+       public Vector2 Frames
+       {
+           set { frames = value; }
+       }
+
+       public Vector2 CurrentFrame
+       {
+           set { currentFrame = value; }
+           get { return currentFrame; }
+
+       }
+       public int FrameWidth
+       {
+           get { return image.Width / (int)frames.X; }
+
+       }
+       public int FrameHeight
+       {
+           get { return image.Height / (int)frames.Y; }
+       }
 
        public override void LoadContent(ContentManager Content, Texture2D image, string text, Vector2 position)
        {

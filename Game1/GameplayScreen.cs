@@ -11,6 +11,7 @@ namespace Game1
 {
     public class GameplayScreen : GameScreen
     {
+        Player player;
         public override void LoadContent(ContentManager content, InputManager input)
         {
             base.LoadContent(content, input);

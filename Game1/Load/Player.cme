@@ -1,2 +1,2 @@
-Load = [Image][Position]
-[NinjaSprite][0 0]
+﻿Load = [Image][Position]
+[Ninja][0 0]

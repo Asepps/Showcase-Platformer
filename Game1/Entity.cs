@@ -17,6 +17,10 @@ namespace Game1
 
         protected ContentManager content;
         protected FileManager fileManager;
+        protected Texture2D image;
+
+        protected Vector2 position;
+        protected List<List<string>> attributes, contents;
         public virtual void LoadContent(ContentManager content, InputManager input)
         {
             this.content = new ContentManager(content.ServiceProvider, "Content");
