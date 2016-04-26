@@ -32,7 +32,7 @@ namespace Game1
         {
             content.Unload();
         }
-        public virtual void Update(GameTime gameTime,InputManager input)
+        public virtual void Update(GameTime gameTime, InputManager input)
         {
 
         }
