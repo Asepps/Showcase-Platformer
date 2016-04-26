@@ -12,6 +12,7 @@ namespace Game1
 {
     public class Player:Entity
     {
+
         
 
         public override void LoadContent(ContentManager content, InputManager input)
