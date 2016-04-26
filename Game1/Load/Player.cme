@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 ﻿Load = [Image][Position]
 [Ninja][0 0]
+=======
+Load = [Image][Position]
+[NinjaSprite][0 0]
+>>>>>>> 2d39520cda59fa1f0d3684d9c49f070861c7d801

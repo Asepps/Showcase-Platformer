@@ -79,6 +79,7 @@
     <None Include="Content\TimesNewRoman12.spritefont" />
     <None Include="Load\Player.cme" />
     <None Include="Load\Menus.cme" />
+    <None Include="Load\Player.cme" />
     <None Include="Load\Splash.cme" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
