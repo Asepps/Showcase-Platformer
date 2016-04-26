@@ -25,7 +25,16 @@ namespace Game1
         }
         public override void Update(GameTime gameTime, InputManager input)
         {
-            base.Update(gameTime);
+            moveAnimation.IsActiv = true;
+            if (input.KeyDown(Keys.Right, Keys.D))
+                moveAnimation.CurrentFrame = new Vector2(moveAnimation.CurrentFrame.X, 9);
+            else if (input.KeyDown(Keys.Left, Keys.A))
+                moveAnimation.CurrentFrame = new Vector2(moveAnimation.CurrentFrame.X, 1);
+            else
+                moveAnimation.IsActiv = false;
+
+            moveAnimation.Update(gameTime);
+
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
