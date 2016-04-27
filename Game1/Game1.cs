@@ -26,7 +26,7 @@ namespace Game1
 
             ScreenManager.Instance.Initialize();
 
-            ScreenManager.Instance.Dimensions = new Vector2(800, 600);
+            ScreenManager.Instance.Dimensions = new Vector2(800, 640);
             graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
             graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
             base.Initialize();
