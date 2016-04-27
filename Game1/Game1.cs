@@ -11,6 +11,8 @@ namespace Game1
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        
+
 
         public Game1()
         {
@@ -18,6 +20,7 @@ namespace Game1
             Content.RootDirectory = "Content";
 
             this.IsMouseVisible = true;
+            
         }
 
        
@@ -39,6 +42,7 @@ namespace Game1
             spriteBatch = new SpriteBatch(GraphicsDevice);
             ScreenManager.Instance.LoadContent(Content);
 
+            
             // TODO: use this.Content to load your game content here
         }
 
@@ -75,6 +79,7 @@ namespace Game1
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
+            
             ScreenManager.Instance.Draw(spriteBatch);
             spriteBatch.End();
 

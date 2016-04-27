@@ -62,13 +62,12 @@ namespace Game1
 
                    if (currentFrame.X * FrameWidth >= image.Width)
                        currentFrame.X = 0;
-
-                   
                }
            }
            else
            {
                frameCounter = 0;
+               currentFrame.X = 1;
            }
           
    
