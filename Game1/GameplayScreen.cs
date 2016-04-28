@@ -25,13 +25,8 @@ namespace Game1
         }
         public override void Update(GameTime gameTime)
         {
-<<<<<<< HEAD
             inputManager.Update();
             player.Update(gameTime, inputManager);
-=======
-            base.Update(gameTime);
-           
->>>>>>> 2d54b07... added new sprite
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

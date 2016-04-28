@@ -32,11 +32,8 @@ namespace Game1
         {
             content.Unload();
         }
-<<<<<<< HEAD
-        public virtual void Update(GameTime gameTime, InputManager input)
-=======
+
         public virtual void Update(GameTime gameTime,InputManager input)
->>>>>>> 2d54b07... added new sprite
         {
 
         }
@@ -44,7 +41,12 @@ namespace Game1
         {
 
         }
-    
-    
+
+
+
+        public virtual void Initialize()
+        {
+            
+        }
     }
 }

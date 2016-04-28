@@ -65,7 +65,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fade.png" />
-    <Content Include="Content\NinjaSprite.png" />
+    <Content Include="Content\Ninja.png" />
+    <Content Include="Content\NinjaLeft.png" />
+    <Content Include="Content\Ninjaright.png" />
     <Content Include="Content\null.png" />
     <Content Include="Content\Splash Screen\ninja2.jpg" />
     <Content Include="Content\Splash Screen\wayofNinja.jpg" />
