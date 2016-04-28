@@ -71,6 +71,7 @@
     <Content Include="Content\null.png" />
     <Content Include="Content\Splash Screen\ninja2.jpg" />
     <Content Include="Content\Splash Screen\wayofNinja.jpg" />
+    <Content Include="Content\TileSets\Blocks_for_Map.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

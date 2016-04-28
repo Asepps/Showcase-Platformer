@@ -1,7 +1,7 @@
 ﻿Load=[Layers]
 
 Load = [TileSet][TileDimensions]
-[tileSet1][3,1]
+[tileSet1][40,40]
 
 Load[StartLayer]
 
