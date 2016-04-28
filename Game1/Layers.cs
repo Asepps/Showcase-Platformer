@@ -57,9 +57,28 @@ namespace Game1
                             string[] split = contents[i][j].Split(',');
                             tileDimensions = new Vector2(int.Parse(split[0]), int.Parse(split[1]));
                             break;
+                        case "StartLayer":
+                            for (int k = 0; k < contents[i].Count; k++)
+                            {
+                                split = contents[i][j].Split(',');
+                                tile.Add(new Vector2(int.Parse(split[0]), int.Parse(split[1])));
+                            }
+                            break;
+                        case "EndLayer":
+                            if (layer.Count > 0)
+                                tileMap.Add(layer);
+                            layer = new List<List<Vector2>>();
+                            break;
                     }
 
+               
                 }
+
+                if (tile > 0)
+                {
+                    layer.Add(tile);
+                }
+                tile = new List<Vector2>();
             }
         }
 
