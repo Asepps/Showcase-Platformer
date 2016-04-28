@@ -18,7 +18,7 @@ namespace Game1
         }
         public KeyboardState KeyState
         {
-            get{ return KeyState;}
+            get{ return keyState;}
             set{ prevKeyState = value;}
         }
 

@@ -17,7 +17,6 @@ namespace Game1
 
         protected ContentManager content;
         protected FileManager fileManager;
-
         protected Texture2D image;
 
         protected Vector2 position;
@@ -33,7 +32,8 @@ namespace Game1
         {
             content.Unload();
         }
-        public virtual void Update(GameTime gameTime, InputManager input)
+
+        public virtual void Update(GameTime gameTime,InputManager input)
         {
 
         }
@@ -41,7 +41,12 @@ namespace Game1
         {
 
         }
-    
-    
+
+
+
+        public virtual void Initialize()
+        {
+            
+        }
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 namespace Game1
 {
-    public class Enemy : Entity
+    class Enemy:Entity
     {
         public override void LoadContent(ContentManager content, InputManager input)
         {

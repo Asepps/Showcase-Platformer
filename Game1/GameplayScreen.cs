@@ -9,11 +9,9 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 namespace Game1
 {
-    public class GameplayScreen : GameScreen
+    class GameplayScreen : GameScreen
     {
         Player player;
-
-
         public override void LoadContent(ContentManager content, InputManager input)
         {
             base.LoadContent(content, input);
@@ -27,7 +25,8 @@ namespace Game1
         }
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            inputManager.Update();
+            player.Update(gameTime, inputManager);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

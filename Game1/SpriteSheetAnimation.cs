@@ -25,23 +25,24 @@ namespace Game1
        {
            set { currentFrame = value; }
            get { return currentFrame; }
-
+           
        }
        public int FrameWidth
        {
-           get { return image.Width / (int)frames.X; }
+           get {return image.Width / (int)frames.X;}
 
        }
        public int FrameHeight
        {
            get { return image.Height / (int)frames.Y; }
        }
+
        public override void LoadContent(ContentManager Content, Texture2D image, string text, Vector2 position)
        {
            base.LoadContent(Content, image, text, position);
            frameCounter = 0;
            switchFrame = 100;
-           frames = new Vector2(10, 9);
+           frames = new Vector2(3, 4);
            currentFrame = new Vector2(0, 0);
            sourceRect = new Rectangle((int)currentFrame.X * FrameWidth, (int)currentFrame.Y * FrameHeight, FrameWidth, FrameHeight);
        }
@@ -61,16 +62,19 @@ namespace Game1
 
                    if (currentFrame.X * FrameWidth >= image.Width)
                        currentFrame.X = 0;
-
-                   
                }
            }
            else
            {
                frameCounter = 0;
+               currentFrame.X = 1;
            }
-           sourceRect = new Rectangle((int)currentFrame.X * FrameWidth, (int)currentFrame.Y * FrameHeight, FrameHeight, FrameHeight);
+          
    
+       }
+       public override void Draw(SpriteBatch spriteBatch)
+       {
+           base.Draw(spriteBatch);
        }
     }
 }
