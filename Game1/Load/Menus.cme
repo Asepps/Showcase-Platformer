@@ -3,7 +3,10 @@ Load = [Axis][Font][Animation]
 [2][Menu][Fade]
 
 Load = [Item][LinkType][LinkID]
-[New Game][Screen][GameplayScreen]zzz
+
+
+
+[New Game][Screen][GameplayScreen]
 [Load Game][Screen][SplashScreen]
 [Options][Screen][SplashScreen]
 [Credits][Screen][SplashScreen]

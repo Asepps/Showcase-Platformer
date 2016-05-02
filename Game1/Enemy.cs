@@ -11,19 +11,23 @@ namespace Game1
 {
     public class Enemy:Entity
     {
-        Texture2D rightWalk,leftWalk,UpWalk,DownWalk,currentWalk;
+        Texture2D rightWalk,leftWalk,upWalk,DownWalk,currentWalk;
 
-            public override void LoadContent(ContentManager content, InputManager input)
-        {
-            rightWalk = content.Load<Texture2D>("EnemyNinjaRight");
-
-            base.LoadContent(content, input);
+           public override void LoadContent(ContentManager content, InputManager input)
+           {
             fileManager = new FileManager();
             moveAnimation = new SpriteSheetAnimation();
             Vector2 tempFrames = Vector2.Zero;
-        ;
-            
+            base.LoadContent(content, input);
+            rightWalk = content.Load<Texture2D>("EnemyNinjaRight");
+            rightWalk = content.Load<Texture2D>("Ninjaright");
+            leftWalk = content.Load<Texture2D>("NinjaLeft");
+            upWalk = content.Load<Texture2D>("NinjaUp");
+            downWalk = content.Load<Texture2D>("NinjaDown");
 
+
+            
+            
             fileManager.LoadContent("../../../../Load/Enemies.cme", attributes, contents);
             for (int i = 0; i < attributes.Count; i++)
             {
