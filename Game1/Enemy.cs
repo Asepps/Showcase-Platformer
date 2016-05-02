@@ -11,7 +11,7 @@ namespace Game1
 {
     public class Enemy:Entity
     {
-        Texture2D rightWalk,leftWalk,upWalk,DownWalk,currentWalk;
+        Texture2D rightWalk,leftWalk,upWalk,downWalk,currentWalk;
 
            public override void LoadContent(ContentManager content, InputManager input)
            {

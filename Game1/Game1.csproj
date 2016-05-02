@@ -50,6 +50,7 @@
     <Compile Include="Layers.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MenuManager.cs" />
+    <Compile Include="NinjaStar.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="ScreenMangaer.cs" />
     <Compile Include="Game1.cs" />
