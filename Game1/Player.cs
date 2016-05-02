@@ -12,14 +12,15 @@ namespace Game1
 {
     public class Player:Entity
     {
-        Texture2D rightWalk, leftWalk;
+        public Direction direction;
+        Texture2D rightWalk,leftWalk,upWalk,downWalk,currentWalk;
         Rectangle destRect;
         Rectangle sourceRect;
         float elapsed;
         float delay = 200f;
         int frames = 0;
         private KeyboardState ks;
-        Vector2 position = new Vector2();
+        public Vector2 position = new Vector2();
         public override void LoadContent(ContentManager content, InputManager input)
         {
             base.LoadContent(content, input);
@@ -29,7 +30,10 @@ namespace Game1
             
             rightWalk = content.Load<Texture2D>("Ninjaright");
             leftWalk = content.Load<Texture2D>("NinjaLeft");
+            upWalk = content.Load<Texture2D>("NinjaUp");
+            downWalk = content.Load<Texture2D>("NinjaDown");
 
+            currentWalk = rightWalk;
             
 
             fileManager.LoadContent("../../../../Load/Player.cme", attributes, contents);
@@ -63,7 +67,7 @@ namespace Game1
         }
         public override void Initialize()
         {
-            destRect = new Rectangle(100, 100, 32, 128);
+            destRect = new Rectangle(100, 100, 32, 32);
             base.Initialize();
         }
         public override void UnloadContent()
@@ -89,7 +93,7 @@ namespace Game1
                 }
                 elapsed = 0;
             }
-            sourceRect = new Rectangle(32 * frames, 0, 32, 128);
+            sourceRect = new Rectangle(32 * frames, 0, 32, 32);
         }
         public override void Update(GameTime gameTime, InputManager input)
         {
@@ -97,23 +101,50 @@ namespace Game1
             {
                 if (ks.IsKeyDown(Keys.D))
                 {
+                    direction = Direction.right;
                     position.X += 2f;
+                    currentWalk = rightWalk;
+                    Animate(gameTime);
                 }
+                else if (ks.IsKeyDown(Keys.A))
+                {
+                    direction = Direction.left;
+                    position.X -= 2f;
+                    currentWalk = leftWalk;
+                    Animate(gameTime);
+                }
+                else if (ks.IsKeyDown(Keys.W))
+                {
+                    direction = Direction.up;
+                    position.Y -= 2f;
+                    currentWalk = upWalk;
+                    Animate(gameTime);
+                }
+                else if (ks.IsKeyDown(Keys.S))
+                {
+                    direction = Direction.down;
+                    position.Y += 2f;
+                    currentWalk = downWalk;
+                    Animate(gameTime);
+                }
+                else
+                {
+                    sourceRect = new Rectangle(0, 0, 32, 32);
+                }
+
+
+               
             }
 
             moveAnimation.IsActiv = true;
-            destRect = new Rectangle((int)position.X, (int)position.Y, 32, 128);
-            Animate(gameTime);
+            destRect = new Rectangle((int)position.X, (int)position.Y, 32, 32);
             moveAnimation.Update(gameTime);
-
-           
-
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(rightWalk, new Rectangle((int)position.X, (int)position.Y, 32, 128), new Rectangle(32 * frames, 0, 32, 128), Color.White);
+            spriteBatch.Draw(currentWalk, new Rectangle((int)position.X, (int)position.Y, 32, 32), new Rectangle(32 * frames, 0, 32, 32),Color.White , 0, new Vector2(16, 16), SpriteEffects.None, 1);
 
-            moveAnimation.Draw(spriteBatch);
+            //moveAnimation.Draw(spriteBatch);
         }
 
     }
