@@ -109,3 +109,15 @@
 /processorParam:TextureFormat=Color
 /build:NinjaLeft.png
 
+#begin TileSets/Blocks_for_Map.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:TileSets/Blocks_for_Map.png
+

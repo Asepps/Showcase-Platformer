@@ -12,11 +12,14 @@ namespace Game1
     class GameplayScreen : GameScreen
     {
         Player player;
+        Layers layer;
         public override void LoadContent(ContentManager content, InputManager input)
         {
             base.LoadContent(content, input);
             player = new Player();
+            layer = new Layers();
             player.LoadContent(content, input);
+            layer.LoadContent(content, "../../../../../../Load/Maps/Map1");
         }
         public override void UnloadContent()
         {
@@ -31,6 +34,7 @@ namespace Game1
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+            layer.Draw(spriteBatch);
             player.Draw(spriteBatch);
         }
     }

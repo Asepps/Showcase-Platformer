@@ -60,9 +60,12 @@ namespace Game1
                         case "StartLayer":
                             for (int k = 0; k < contents[i].Count; k++)
                             {
-                                split = contents[i][j].Split(',');
+                                split = contents[i][k].Split(',');
                                 tile.Add(new Vector2(int.Parse(split[0]), int.Parse(split[1])));
                             }
+                            if (tile.Count > 0)
+                                layer.Add(tile);
+                            tile = new List<Vector2>();
                             break;
                         case "EndLayer":
                             if (layer.Count > 0)
@@ -74,11 +77,18 @@ namespace Game1
                
                 }
 
-                if (tile > 0)
+                
+            }
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            for (int i = 0; i < tileMap[layerNumber].Count; i++)
+            {
+                for (int j = 0; j < tileMap[layerNumber][i].Count; j++)
                 {
-                    layer.Add(tile);
+                    spriteBatch.Draw(tileSet, new Vector2(j * tileDimensions.X, i * tileDimensions.Y), new Rectangle((int)tileMap[layerNumber][i][j].X * (int)tileDimensions.X, (int)tileMap[layerNumber][i][j].Y * (int) tileDimensions.Y, (int)tileDimensions.X, (int)tileDimensions.Y), Color.White);
                 }
-                tile = new List<Vector2>();
             }
         }
 

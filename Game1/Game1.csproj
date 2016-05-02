@@ -80,13 +80,16 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\Map1.cme" />
     <None Include="Content\Menu.spritefont" />
+    <None Include="Content\Splash Screen\Menu.spritefont" />
     <None Include="Content\TimesNewRoman12.spritefont" />
     <None Include="Load\Maps\Map1.cme" />
     <None Include="Load\Player.cme" />
     <None Include="Load\Menus.cme" />
     <None Include="Load\Splash.cme" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
