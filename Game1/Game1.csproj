@@ -43,6 +43,7 @@
     <Compile Include="Entity.cs" />
     <Compile Include="FileManager.cs" />
     <Compile Include="FadeAnimation.cs" />
+    <Compile Include="GameObject.cs" />
     <Compile Include="GameplayScreen.cs" />
     <Compile Include="GameScreen.cs" />
     <Compile Include="InputManager.cs" />
@@ -66,11 +67,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\EnemyNinjaRight.png" />
     <Content Include="Content\fade.png" />
     <Content Include="Content\Ninja.png" />
+    <Content Include="Content\NinjaDown.png" />
     <Content Include="Content\NinjaLeft.png" />
     <Content Include="Content\Ninjaright.png" />
+    <Content Include="Content\NinjaUp.png" />
     <Content Include="Content\null.png" />
+    <Content Include="Content\Shuriken.png" />
     <Content Include="Content\Splash Screen\ninja2.jpg" />
     <Content Include="Content\Splash Screen\wayofNinja.jpg" />
     <Content Include="Content\TileSets\Blocks_for_Map.png" />
@@ -84,6 +89,7 @@
     <None Include="Content\Menu.spritefont" />
     <None Include="Content\Splash Screen\Menu.spritefont" />
     <None Include="Content\TimesNewRoman12.spritefont" />
+    <None Include="Load\Enemies.cme" />
     <None Include="Load\Maps\Map1.cme" />
     <None Include="Load\Player.cme" />
     <None Include="Load\Menus.cme" />
