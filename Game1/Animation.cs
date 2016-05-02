@@ -19,7 +19,7 @@ namespace Game1
         protected Color color;
         protected Rectangle sourceRect;
         protected float rotation, scale, axis;
-        protected Vector2 origion, position;
+        protected Vector2 origin, position;
         protected ContentManager content;
         protected bool isActiv;
         protected float alpha;
@@ -79,14 +79,13 @@ namespace Game1
         {
             if (image != null)
             {
-                origion = new Vector2(sourceRect.Width / 2,
-                    sourceRect.Height / 2);
-                spriteBatch.Draw(image, position + origion, sourceRect, Color.White * alpha, rotation, origion, scale, SpriteEffects.None, 0.0f);
+                origin = new Vector2(sourceRect.Width / 2, sourceRect.Height / 2);
+                spriteBatch.Draw(image, position + origin, sourceRect, Color.White * alpha, rotation, origin, scale, SpriteEffects.None, 0.0f);
             }
             if (text != String.Empty)
             {
-                origion = new Vector2(font.MeasureString(text).X / 2, font.MeasureString(text).Y / 2);
-                spriteBatch.DrawString(font, text, position + origion, color * alpha, rotation, origion, scale, SpriteEffects.None, 0.0f);
+                origin = new Vector2(font.MeasureString(text).X / 2, font.MeasureString(text).Y / 2);
+                spriteBatch.DrawString(font, text, position + origin, color * alpha, rotation, origin, scale, SpriteEffects.None, 0.0f);
             }
 
         }
