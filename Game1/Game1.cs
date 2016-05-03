@@ -11,8 +11,9 @@ namespace Game1
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
 
+        Texture2D playerBoundsTex, enemyBoundsTex;
+        Rectangle playerBounds, enemyBounds;
 
         public Game1()
         {
