@@ -21,10 +21,8 @@ namespace Game1
     class GameplayScreen : GameScreen
     {
         Player player;
-<<<<<<< HEAD
         Layers layer;
-=======
->>>>>>> origin/master
+
 
         private List<NinjaStar> stars;
         private Texture2D shurikenTexture;
@@ -35,10 +33,8 @@ namespace Game1
             player = new Player();
             layer = new Layers();
             player.LoadContent(content, input);
-<<<<<<< HEAD
             layer.LoadContent(content, "../../../../../../Load/Maps/Map1");
-=======
->>>>>>> origin/master
+
 
             stars = new List<NinjaStar>();
             shurikenTexture = content.Load<Texture2D>("Shuriken");
@@ -88,10 +84,7 @@ namespace Game1
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-<<<<<<< HEAD
             layer.Draw(spriteBatch);
-=======
->>>>>>> origin/master
 
             foreach (NinjaStar star in stars)
             {
