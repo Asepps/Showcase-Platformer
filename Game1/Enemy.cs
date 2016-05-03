@@ -9,31 +9,40 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 namespace Game1
 {
-    public class Enemy:Entity
+    public class Enemy : Entity
     {
-        Texture2D rightWalk,leftWalk,upWalk,downWalk,currentWalk;
+        Texture2D ErightWalk, EleftWalk, EupWalk, EdownWalk, EcurrentWalk;
+        Rectangle destRect;
+        Rectangle sourceRect;
+        float elapsed;
+        float delay = 200f;
+        int frames = 0;
 
-           public override void LoadContent(ContentManager content, InputManager input)
-           {
+
+
+        public override void LoadContent(ContentManager content, InputManager input)
+        {
             fileManager = new FileManager();
             moveAnimation = new SpriteSheetAnimation();
             Vector2 tempFrames = Vector2.Zero;
             base.LoadContent(content, input);
-            rightWalk = content.Load<Texture2D>("EnemyNinjaRight");
-            rightWalk = content.Load<Texture2D>("Ninjaright");
-            leftWalk = content.Load<Texture2D>("NinjaLeft");
-            upWalk = content.Load<Texture2D>("NinjaUp");
-            downWalk = content.Load<Texture2D>("NinjaDown");
+            
+
+            ErightWalk = content.Load<Texture2D>("EnemyNinjaRight");
+            EleftWalk = content.Load<Texture2D>("EnemyNinjaLeft");
+            EupWalk = content.Load<Texture2D>("EnemyNinjaUp");
+            EdownWalk = content.Load<Texture2D>("EnemyNinjaDown");
+            EcurrentWalk = ErightWalk;
 
 
-            
-            
-            fileManager.LoadContent("../../../../Load/Enemies.cme", attributes, contents);
+
+
+            fileManager.LoadContent("../../../../Load/Enemy.cme", attributes, contents);
             for (int i = 0; i < attributes.Count; i++)
             {
                 for (int j = 0; j < attributes[i].Count; j++)
                 {
-                    switch ( attributes [i][j])
+                    switch (attributes[i][j])
                     {
                         case "Health":
                             health = int.Parse(contents[i][j]);
@@ -42,7 +51,7 @@ namespace Game1
                             string[] frames = contents[i][j].Split(' ');
                             tempFrames = new Vector2(int.Parse(frames[0]), int.Parse(frames[1]));
                             break;
-                        case"Image":
+                        case "Image":
                             image = content.Load<Texture2D>(contents[i][j]);
                             break;
                         case "Position":
@@ -50,27 +59,51 @@ namespace Game1
                             position = new Vector2(int.Parse(frames[0]), int.Parse(frames[1]));
                             break;
 
-                                
+
                     }
                 }
             }
-          
+
             base.LoadContent(content, input);
+        }
+
+        public override void Initialize()
+        {
+            destRect = new Rectangle(100, 100, 31, 32);
+            base.Initialize();
         }
         public override void UnloadContent()
         {
+           
+
             base.UnloadContent();
         }
         public override void Update(GameTime gameTime, InputManager input)
         {
-            
+            elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (elapsed >= delay)
+            {
+                if (frames >= 3)
+                {
+                    frames = 0;
+                }
+                else
+                {
+                    frames++;
+                }
+                elapsed = 0;
+            }
+            sourceRect = new Rectangle(31 * frames, 0, 31, 32);
         }
         public override void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Begin();
-            spritebatch.Draw(rightWalk, new Rectangle(100, 100, 32, 32), Color.White);
-            spritebatch.End();
+
+            spritebatch.Draw(EcurrentWalk, new Rectangle(100, 100, 31, 32), new Rectangle(0, 0, 31, 32), Color.White);
             base.Draw(spritebatch);
         }
+
+
+
+
     }
 }
