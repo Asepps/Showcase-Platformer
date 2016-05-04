@@ -40,7 +40,7 @@ namespace Game1
             stars = new List<NinjaStar>();
             shurikenTexture = content.Load<Texture2D>("Shuriken");
             
-            enemy = new Enemy();
+            enemy = new Enemy(player);
             enemy.LoadContent(content, input);
 
         
