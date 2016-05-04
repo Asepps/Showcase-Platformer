@@ -11,14 +11,20 @@ namespace Game1
 {
     public class Enemy : Entity
     {
-        Texture2D ErightWalk, EleftWalk, EupWalk, EdownWalk, EcurrentWalk;
+        public Direction direction;
+        Texture2D rightWalk, leftWalk, upWalk, downWalk, currentWalk;
         Rectangle destRect;
         Rectangle sourceRect;
+        Player player;
         float elapsed;
         float delay = 200f;
         int frames = 0;
 
 
+        public Enemy(Player player)
+        {
+            this.player = player;
+        }
 
         public override void LoadContent(ContentManager content, InputManager input)
         {
@@ -26,13 +32,12 @@ namespace Game1
             moveAnimation = new SpriteSheetAnimation();
             Vector2 tempFrames = Vector2.Zero;
             base.LoadContent(content, input);
-            
 
-            ErightWalk = content.Load<Texture2D>("EnemyNinjaRight");
-            EleftWalk = content.Load<Texture2D>("EnemyNinjaLeft");
-            EupWalk = content.Load<Texture2D>("EnemyNinjaUp");
-            EdownWalk = content.Load<Texture2D>("EnemyNinjaDown");
-            EcurrentWalk = ErightWalk;
+            rightWalk = content.Load<Texture2D>("EnemyNinjaRight");
+            leftWalk = content.Load<Texture2D>("EnemyNinjaLeft");
+            upWalk = content.Load<Texture2D>("EnemyNinjaUp");
+            downWalk = content.Load<Texture2D>("EnemyNinjaDown");
+            currentWalk = rightWalk;
 
 
 
@@ -63,9 +68,27 @@ namespace Game1
                     }
                 }
             }
-
+            moveAnimation.LoadContent(content, image, "", position);
             base.LoadContent(content, input);
         }
+        public void Animate(GameTime gameTime)
+        {
+            elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (elapsed >= delay)
+                {
+                    if (frames > 1)
+                    {
+                        frames = 0;
+                    }
+                    else
+                    {
+                        frames++;
+                    }
+                    elapsed = 0;
+                }
+                sourceRect = new Rectangle(31 * frames, 0, 31, 32);
+        }
+
 
         public override void Initialize()
         {
@@ -77,28 +100,48 @@ namespace Game1
            
 
             base.UnloadContent();
+            moveAnimation.UnloadContent();
+
         }
+
         public override void Update(GameTime gameTime, InputManager input)
         {
-            elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (elapsed >= delay)
+            if (Math.Round(player.position.X) > Math.Round(position.X))
             {
-                if (frames >= 3)
-                {
-                    frames = 0;
-                }
-                else
-                {
-                    frames++;
-                }
-                elapsed = 0;
+                position.X += 1.5f;
+                direction = Direction.right;
+                currentWalk = rightWalk;
             }
-            sourceRect = new Rectangle(31 * frames, 0, 31, 32);
+            else if (Math.Round(player.position.Y) > Math.Round(position.Y))
+            {
+                position.Y += 1.5f;
+                direction = Direction.down;
+                currentWalk = downWalk;
+            }
+            else if (Math.Round(player.position.X) < Math.Round(position.X))
+            {
+                position.X -= 1.5f;
+                direction = Direction.left;
+                currentWalk = leftWalk;
+            }
+            else if (Math.Round(player.position.Y) < Math.Round(position.Y))
+            {
+                position.Y -= 1.5f;
+                direction = Direction.up;
+                currentWalk = upWalk;
+            }
+
+            Animate(gameTime);
+
+            moveAnimation.IsActiv = true;
+           destRect = new Rectangle((int)position.X, (int)position.Y, 31, 32);
+            moveAnimation.Update(gameTime);
+            
         }
         public override void Draw(SpriteBatch spritebatch)
         {
-
-            spritebatch.Draw(EcurrentWalk, new Rectangle(100, 100, 31, 32), new Rectangle(0, 0, 31, 32), Color.White);
+            spritebatch.Draw(currentWalk, new Rectangle((int)position.X, (int)position.Y, 32, 32), new Rectangle(32 * frames, 0, 32, 32), Color.White, 0, new Vector2(16, 16), SpriteEffects.None, 1);
+           
             base.Draw(spritebatch);
         }
 

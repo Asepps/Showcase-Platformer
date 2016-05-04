@@ -20,7 +20,7 @@ namespace Game1
         float delay = 200f;
         int frames = 0;
         private KeyboardState ks;
-        public Vector2 position = new Vector2();
+
         public override void LoadContent(ContentManager content, InputManager input)
         {
             base.LoadContent(content, input);

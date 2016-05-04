@@ -22,6 +22,7 @@ namespace Game1
     {
         Player player;
         Layers layer;
+        Enemy enemy;
 
 
         private List<NinjaStar> stars;
@@ -38,12 +39,19 @@ namespace Game1
 
             stars = new List<NinjaStar>();
             shurikenTexture = content.Load<Texture2D>("Shuriken");
+            
+            enemy = new Enemy();
+            enemy.LoadContent(content, input);
+
+        
+            
         }
 
         public override void UnloadContent()
         {
             base.UnloadContent();
             player.UnloadContent();
+            enemy.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)
@@ -86,12 +94,13 @@ namespace Game1
             base.Draw(spriteBatch);
             layer.Draw(spriteBatch);
 
+            player.Draw(spriteBatch);
+            enemy.Draw(spriteBatch);
+
             foreach (NinjaStar star in stars)
             {
                 star.Draw(spriteBatch);
             }
-
-            player.Draw(spriteBatch);
         }
     }
 }

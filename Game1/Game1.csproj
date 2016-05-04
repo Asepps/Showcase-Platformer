@@ -47,8 +47,6 @@
     <Compile Include="GameplayScreen.cs" />
     <Compile Include="GameScreen.cs" />
     <Compile Include="InputManager.cs" />
-    <Compile Include="Layers.cs" />
-    <Compile Include="Map.cs" />
     <Compile Include="MenuManager.cs" />
     <Compile Include="NinjaStar.cs" />
     <Compile Include="Player.cs" />
@@ -68,7 +66,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\EnemyNinjaDown.png" />
+    <Content Include="Content\EnemyNinjaLeft.png" />
     <Content Include="Content\EnemyNinjaRight.png" />
+    <Content Include="Content\EnemyNinjaUp.png" />
     <Content Include="Content\fade.png" />
     <Content Include="Content\Ninja.png" />
     <Content Include="Content\NinjaDown.png" />
@@ -79,24 +80,19 @@
     <Content Include="Content\Shuriken.png" />
     <Content Include="Content\Splash Screen\ninja2.jpg" />
     <Content Include="Content\Splash Screen\wayofNinja.jpg" />
-    <Content Include="Content\TileSets\Blocks_for_Map.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\Map1.cme" />
     <None Include="Content\Menu.spritefont" />
-    <None Include="Content\Splash Screen\Menu.spritefont" />
     <None Include="Content\TimesNewRoman12.spritefont" />
-    <None Include="Load\Enemies.cme" />
-    <None Include="Load\Maps\Map1.cme" />
+    <None Include="Load\Enemy.cme" />
     <None Include="Load\Player.cme" />
     <None Include="Load\Menus.cme" />
     <None Include="Load\Splash.cme" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
