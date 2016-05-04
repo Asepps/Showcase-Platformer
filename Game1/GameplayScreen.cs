@@ -35,7 +35,7 @@ namespace Game1
             stars = new List<NinjaStar>();
             shurikenTexture = content.Load<Texture2D>("Shuriken");
             
-            enemy = new Enemy();
+            enemy = new Enemy(player);
             enemy.LoadContent(content, input);
 
         
@@ -53,7 +53,7 @@ namespace Game1
         {
             inputManager.Update();
             player.Update(gameTime, inputManager);
-
+            enemy.Update(gameTime, inputManager);
             if (inputManager.KeyPressed(Keys.Space))
             {
                 Vector2 velocity = new Vector2();
