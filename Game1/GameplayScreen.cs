@@ -22,6 +22,8 @@ namespace Game1
     {
         Player player;
         Enemy enemy;
+        Layers layer;
+
 
         private List<NinjaStar> stars;
         private Texture2D shurikenTexture;
@@ -30,7 +32,10 @@ namespace Game1
         {
             base.LoadContent(content, input);
             player = new Player();
+            layer = new Layers();
             player.LoadContent(content, input);
+            layer.LoadContent(content, "../../../../../../Load/Maps/Map1");
+
 
             stars = new List<NinjaStar>();
             shurikenTexture = content.Load<Texture2D>("Shuriken");
@@ -87,6 +92,7 @@ namespace Game1
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+            layer.Draw(spriteBatch);
 
             player.Draw(spriteBatch);
             enemy.Draw(spriteBatch);
