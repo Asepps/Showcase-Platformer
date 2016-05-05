@@ -18,6 +18,7 @@ namespace Game1
             this.velocity = velocity;
             this.position = position;
             this.rotation = rotation;
+            
         }
 
         public override void Update()

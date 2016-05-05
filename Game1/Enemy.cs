@@ -134,7 +134,7 @@ namespace Game1
             Animate(gameTime);
 
             moveAnimation.IsActiv = true;
-           destRect = new Rectangle((int)position.X, (int)position.Y, 31, 32);
+            destRect = new Rectangle((int)position.X, (int)position.Y, 31, 32);
             moveAnimation.Update(gameTime);
             
         }

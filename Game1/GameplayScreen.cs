@@ -10,6 +10,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 namespace Game1
 {
+
+
     public enum Direction
     {
         up,
@@ -42,9 +44,6 @@ namespace Game1
             
             enemy = new Enemy(player);
             enemy.LoadContent(content, input);
-
-        
-            
         }
 
         public override void UnloadContent()
@@ -58,6 +57,7 @@ namespace Game1
         {
             inputManager.Update();
             player.Update(gameTime, inputManager);
+            enemy.Update(gameTime, inputManager);
 
             if (inputManager.KeyPressed(Keys.Space))
             {
@@ -83,10 +83,14 @@ namespace Game1
 
             }
 
+            
             foreach (NinjaStar star in stars)
             {
                 star.Update();
             }
+            
+            
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
