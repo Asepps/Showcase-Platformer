@@ -49,9 +49,9 @@ namespace Game1
             {
                 int startX = rand.Next(10, 600);
                 int startY = rand.Next(10, 600);
-                enemies.Add(new Enemy(player, startX, startY));
+                int enemySeed = rand.Next(0,5000);
+                enemies.Add(new Enemy(player, startX, startY, enemySeed));
             }
-            enemies.Add(new Enemy(player,0,0));
             foreach (Enemy enemy in enemies)
             {
                 enemy.LoadContent(content, input);
