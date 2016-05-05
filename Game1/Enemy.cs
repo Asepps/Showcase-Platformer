@@ -114,25 +114,25 @@ namespace Game1
             
             if (Math.Round(player.position.X) > Math.Round(position.X))
             {
-                position.X += 1.5f;
+                position.X += 0.5f;
                 direction = Direction.right;
                 currentWalk = rightWalk;
             }
             else if (Math.Round(player.position.Y) > Math.Round(position.Y))
             {
-                position.Y += 1.5f;
+                position.Y += 0.5f;
                 direction = Direction.down;
                 currentWalk = downWalk;
             }
             else if (Math.Round(player.position.X) < Math.Round(position.X))
             {
-                position.X -= 1.5f;
+                position.X -= 0.5f;
                 direction = Direction.left;
                 currentWalk = leftWalk;
             }
             else if (Math.Round(player.position.Y) < Math.Round(position.Y))
             {
-                position.Y -= 1.5f;
+                position.Y -= 0.5f;
                 direction = Direction.up;
                 currentWalk = upWalk;
             }
