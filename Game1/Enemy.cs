@@ -20,10 +20,13 @@ namespace Game1
         float elapsed;
         float delay = 200f;
         int frames = 0;
+        int randTime = 0;
+        int randDirection = 0;
        
-        public Enemy(Player player,int posX, int posY)
+        public Enemy(Player player,int posX, int posY, int enemySeed)
             
         {
+            rand = new Random(enemySeed);
             this.player = player;
             position.X = posX;
             position.Y = posY;
@@ -73,7 +76,7 @@ namespace Game1
             }
        */
             image = content.Load<Texture2D>("EnemyNinjaRight");
-            Width = image.Width;
+            Width = image.Width/3;
             Height = image.Height;
             moveAnimation.LoadContent(content, image, "", position);
             base.LoadContent(content, input);
@@ -113,28 +116,95 @@ namespace Game1
 
         public override void Update(GameTime gameTime, InputManager input)
         {
-            
-            if (Math.Round(player.position.X) > Math.Round(position.X))
+            if (randTime <= 0)
             {
-                position.X += 0.5f;
+                randTime = rand.Next(10, 60);
+                randDirection = rand.Next(0,100);
+                //randDirection *= (int) position.X + (int) position.Y;
+                randDirection = randDirection % 2;
+            }
+            randTime--;
+            if (Math.Round(player.position.X) > Math.Round(position.X) && Math.Round(player.position.Y) > Math.Round(position.Y))
+            {
+                if (randDirection == 1)
+                {
+                    position.X += 1.5f;
+                    direction = Direction.right;
+                    currentWalk = rightWalk;
+                }
+                else 
+                {
+                    position.Y += 1.5f;
+                    direction = Direction.down;
+                    currentWalk = downWalk;
+                }
+            }
+            else if (Math.Round(player.position.X) < Math.Round(position.X) && Math.Round(player.position.Y) > Math.Round(position.Y))
+            {
+                if (randDirection == 1)
+                {
+                    position.X -= 1.5f;
+                    direction = Direction.left;
+                    currentWalk = leftWalk;
+                }
+                else
+                {
+                    position.Y += 1.5f;
+                    direction = Direction.down;
+                    currentWalk = downWalk;
+                }
+            }
+            else if (Math.Round(player.position.X) > Math.Round(position.X) && Math.Round(player.position.Y) < Math.Round(position.Y))
+            {
+                if (randDirection == 1)
+                {
+                    position.X += 1.5f;
+                    direction = Direction.right;
+                    currentWalk = rightWalk;
+                }
+                else
+                {
+                    position.Y -= 1.5f;
+                    direction = Direction.up;
+                    currentWalk = upWalk;
+                }
+            }
+            else if (Math.Round(player.position.X) < Math.Round(position.X) && Math.Round(player.position.Y) < Math.Round(position.Y))
+            {
+                if (randDirection == 1)
+                {
+                    position.X -= 1.5f;
+                    direction = Direction.left;
+                    currentWalk = leftWalk;
+                }
+                else
+                {
+                    position.Y -= 1.5f;
+                    direction = Direction.up;
+                    currentWalk = upWalk;
+                }
+            }
+            else if (Math.Round(player.position.X) > Math.Round(position.X))
+            {
+                position.X += 1.5f;
                 direction = Direction.right;
                 currentWalk = rightWalk;
             }
             else if (Math.Round(player.position.Y) > Math.Round(position.Y))
             {
-                position.Y += 0.5f;
+                position.Y += 1.5f;
                 direction = Direction.down;
                 currentWalk = downWalk;
             }
             else if (Math.Round(player.position.X) < Math.Round(position.X))
             {
-                position.X -= 0.5f;
+                position.X -= 1.5f;
                 direction = Direction.left;
                 currentWalk = leftWalk;
             }
             else if (Math.Round(player.position.Y) < Math.Round(position.Y))
             {
-                position.Y -= 0.5f;
+                position.Y -= 1.5f;
                 direction = Direction.up;
                 currentWalk = upWalk;
             }
@@ -142,7 +212,7 @@ namespace Game1
             Animate(gameTime);
 
             moveAnimation.IsActiv = true;
-           destRect = new Rectangle((int)position.X, (int)position.Y, 31, 32);
+            destRect = new Rectangle((int)position.X, (int)position.Y, 31, 32);
             moveAnimation.Update(gameTime);
             
         }

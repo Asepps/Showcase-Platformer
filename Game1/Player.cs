@@ -62,7 +62,7 @@ namespace Game1
                     }
                 }
             }
-            Width = image.Width;
+            Width = image.Width/3;
             Height = image.Height;
             moveAnimation.LoadContent(content, image, "", position);
 
