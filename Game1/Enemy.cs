@@ -73,6 +73,8 @@ namespace Game1
             }
        */
             image = content.Load<Texture2D>("EnemyNinjaRight");
+            Width = image.Width;
+            Height = image.Height;
             moveAnimation.LoadContent(content, image, "", position);
             base.LoadContent(content, input);
         }
