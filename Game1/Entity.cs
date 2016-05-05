@@ -19,6 +19,9 @@ namespace Game1
         protected FileManager fileManager;
         protected Texture2D image;
 
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+
         public Vector2 position;
         protected List<List<string>> attributes, contents;
         public virtual void LoadContent(ContentManager content, InputManager input)

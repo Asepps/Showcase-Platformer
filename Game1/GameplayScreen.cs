@@ -23,8 +23,9 @@ namespace Game1
     class GameplayScreen : GameScreen
     {
         Player player;
-        Layers layer;
+
         Enemy enemy;
+        Layers layer;
 
 
         private List<NinjaStar> stars;
@@ -58,7 +59,10 @@ namespace Game1
             inputManager.Update();
             player.Update(gameTime, inputManager);
             enemy.Update(gameTime, inputManager);
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
             if (inputManager.KeyPressed(Keys.Space))
             {
                 Vector2 velocity = new Vector2();

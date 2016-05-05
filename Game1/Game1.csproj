@@ -67,10 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\EnemyNinjaDown.png" />
-    <Content Include="Content\EnemyNinjaLeft.png" />
     <Content Include="Content\EnemyNinjaRight.png" />
-    <Content Include="Content\EnemyNinjaUp.png" />
     <Content Include="Content\fade.png" />
     <Content Include="Content\Ninja.png" />
     <Content Include="Content\NinjaDown.png" />
@@ -89,7 +86,8 @@
   <ItemGroup>
     <None Include="Content\Menu.spritefont" />
     <None Include="Content\TimesNewRoman12.spritefont" />
-    <None Include="Load\Enemy.cme" />
+    <None Include="Load\Enemies.cme" />
+    <None Include="Load\Maps\Map1.cme" />
     <None Include="Load\Player.cme" />
     <None Include="Load\Menus.cme" />
     <None Include="Load\Splash.cme" />
