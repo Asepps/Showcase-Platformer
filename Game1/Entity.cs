@@ -18,6 +18,9 @@ namespace Game1
         protected ContentManager content;
         protected FileManager fileManager;
         protected Texture2D image;
+        public int Width { get; set; }
+        public int Height { get; set; }
+
 
         public Vector2 position;
         protected List<List<string>> attributes, contents;

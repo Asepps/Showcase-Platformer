@@ -68,7 +68,10 @@ namespace Game1
         {
             inputManager.Update();
             player.Update(gameTime, inputManager);
-
+            float playerRight = player.position.X + player.Width;
+            float playerLeft = player.position.X;
+            float playerTop = player.position.Y;
+            float playerBottom = player.position.Y + player.Height;
             if (inputManager.KeyPressed(Keys.Space))
             {
                 Vector2 velocity = new Vector2();
@@ -94,13 +97,54 @@ namespace Game1
             }
             foreach (Enemy enemy in enemies)
             {
+                float enemyRight = enemy.position.X + enemy.Width;
+                float enemyLeft = enemy.position.X;
+                float enemyTop = enemy.position.Y;
+                float enemyBottom = enemy.position.Y + enemy.Height;
                 enemy.Update(gameTime, inputManager);
-            }
+                if (!(enemyRight < playerLeft ||
+                      enemyLeft > playerRight ||
+                      enemyTop > playerBottom ||
+                      enemyBottom < playerTop))
+                {
+                    //
+                }
 
+            }
+            List<Enemy> enemeisToRemove = new List<Enemy>();
+            List<NinjaStar> starsToRemove = new List<NinjaStar>();
             foreach (NinjaStar star in stars)
             {
 
                 star.Update();
+                float starRight = star.position.X + star.Width;
+                float starLeft = star.position.X;
+                float starTop = star.position.Y;
+                float starBottom = star.position.Y + star.Height;
+                foreach (Enemy enemy in enemies)
+                {
+                    float enemyRight = enemy.position.X + enemy.Width;
+                    float enemyLeft = enemy.position.X;
+                    float enemyTop = enemy.position.Y;
+                    float enemyBottom = enemy.position.Y + enemy.Height;
+                    if (!(starRight < enemyLeft ||
+                        starLeft > enemyRight ||
+                        starTop > enemyBottom ||
+                        starBottom < enemyTop))
+                    {
+                        enemeisToRemove.Add(enemy);
+                        starsToRemove.Add(star);
+                    }
+                }
+
+            }
+            foreach (Enemy enemy in enemeisToRemove)
+            {
+                enemies.Remove(enemy);
+            }
+            foreach (NinjaStar star in starsToRemove)
+            {
+                stars.Remove(star);
             }
         }
 
