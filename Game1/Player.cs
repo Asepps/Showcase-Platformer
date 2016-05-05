@@ -62,8 +62,8 @@ namespace Game1
                     }
                 }
             }
-            Width = image.Width/3;
-            Height = image.Height;
+            Width = image.Width/3 -10;
+            Height = image.Height-5;
             moveAnimation.LoadContent(content, image, "", position);
 
         }

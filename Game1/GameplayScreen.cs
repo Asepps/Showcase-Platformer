@@ -45,7 +45,7 @@ namespace Game1
             shurikenTexture = content.Load<Texture2D>("Shuriken");
             
             enemies = new List<Enemy>();
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 5; i++)
             {
                 int startX = rand.Next(10, 600);
                 int startY = rand.Next(10, 600);
