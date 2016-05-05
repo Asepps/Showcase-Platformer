@@ -86,6 +86,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\DeathFont.spritefont" />
     <None Include="Content\Map1.cme" />
     <None Include="Content\Menu.spritefont" />
     <None Include="Content\Splash Screen\Menu.spritefont" />
