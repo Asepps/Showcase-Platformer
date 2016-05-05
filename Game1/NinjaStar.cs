@@ -25,5 +25,6 @@ namespace Game1
             position += velocity;
             rotation += .2f;
         }
+ 
     }
 }

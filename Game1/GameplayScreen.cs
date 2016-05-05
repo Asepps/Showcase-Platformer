@@ -21,10 +21,9 @@ namespace Game1
     class GameplayScreen : GameScreen
     {
         Player player;
-        Enemy enemy;
         Layers layer;
 
-
+        private List<Enemy> enemies;
         private List<NinjaStar> stars;
         private Texture2D shurikenTexture;
 
@@ -35,30 +34,41 @@ namespace Game1
             layer = new Layers();
             player.LoadContent(content, input);
             layer.LoadContent(content, "../../../../../../Load/Maps/Map1");
-
+            Random rand = new Random();
 
             stars = new List<NinjaStar>();
+
             shurikenTexture = content.Load<Texture2D>("Shuriken");
             
-            enemy = new Enemy(player);
-            enemy.LoadContent(content, input);
-
-        
-            
+            enemies = new List<Enemy>();
+            for (int i = 0; i < 50; i++)
+            {
+                int startX = rand.Next(10, 600);
+                int startY = rand.Next(10, 600);
+                enemies.Add(new Enemy(player, startX, startY));
+            }
+            enemies.Add(new Enemy(player,0,0));
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.LoadContent(content, input);
+            }
         }
 
         public override void UnloadContent()
         {
             base.UnloadContent();
             player.UnloadContent();
-            enemy.UnloadContent();
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.UnloadContent();
+            }
         }
 
         public override void Update(GameTime gameTime)
         {
             inputManager.Update();
             player.Update(gameTime, inputManager);
-            enemy.Update(gameTime, inputManager);
+
             if (inputManager.KeyPressed(Keys.Space))
             {
                 Vector2 velocity = new Vector2();
@@ -82,9 +92,14 @@ namespace Game1
                 stars.Add(new NinjaStar(shurikenTexture, velocity, player.position, 0));
 
             }
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.Update(gameTime, inputManager);
+            }
 
             foreach (NinjaStar star in stars)
             {
+
                 star.Update();
             }
         }
@@ -95,8 +110,10 @@ namespace Game1
             layer.Draw(spriteBatch);
 
             player.Draw(spriteBatch);
-            enemy.Draw(spriteBatch);
-
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.Draw(spriteBatch);
+            }
             foreach (NinjaStar star in stars)
             {
                 star.Draw(spriteBatch);

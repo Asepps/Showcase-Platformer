@@ -15,15 +15,18 @@ namespace Game1
         Texture2D rightWalk, leftWalk, upWalk, downWalk, currentWalk;
         Rectangle destRect;
         Rectangle sourceRect;
+        Random rand;
         Player player;
         float elapsed;
         float delay = 200f;
         int frames = 0;
-
-
-        public Enemy(Player player)
+       
+        public Enemy(Player player,int posX, int posY)
+            
         {
             this.player = player;
+            position.X = posX;
+            position.Y = posY;
         }
 
         public override void LoadContent(ContentManager content, InputManager input)
@@ -42,7 +45,7 @@ namespace Game1
 
 
 
-            fileManager.LoadContent("../../../../Load/Enemy.cme", attributes, contents);
+      /*      fileManager.LoadContent("../../../../Load/Enemy.cme", attributes, contents);
             for (int i = 0; i < attributes.Count; i++)
             {
                 for (int j = 0; j < attributes[i].Count; j++)
@@ -61,13 +64,15 @@ namespace Game1
                             break;
                         case "Position":
                             frames = contents[i][j].Split(' ');
-                            position = new Vector2(int.Parse(frames[0]), int.Parse(frames[1]));
+                            //position = new Vector2(int.Parse(frames[0]), int.Parse(frames[1]));
                             break;
-
+            
 
                     }
                 }
             }
+       */
+            image = content.Load<Texture2D>("EnemyNinjaRight");
             moveAnimation.LoadContent(content, image, "", position);
             base.LoadContent(content, input);
         }
@@ -106,6 +111,7 @@ namespace Game1
 
         public override void Update(GameTime gameTime, InputManager input)
         {
+            
             if (Math.Round(player.position.X) > Math.Round(position.X))
             {
                 position.X += 1.5f;
