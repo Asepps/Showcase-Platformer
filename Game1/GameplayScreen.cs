@@ -45,11 +45,33 @@ namespace Game1
             shurikenTexture = content.Load<Texture2D>("Shuriken");
             
             enemies = new List<Enemy>();
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 500; i++)
             {
-                int startX = rand.Next(10, 600);
-                int startY = rand.Next(10, 600);
-                int enemySeed = rand.Next(0,5000);
+                bool goodStart = false;
+                int startX=0;
+                int startY=0;
+                while(!goodStart){
+                    startX = rand.Next(10, 600);
+                    startY = rand.Next(10, 600);
+ 
+                    float playerRight = player.position.X + player.Width +100;
+                    float playerLeft = player.position.X;
+                    float playerTop = player.position.Y;
+                    float playerBottom = player.position.Y + player.Height+100;
+                    float enemyRight =startX + 120;
+                    float enemyLeft = startX;
+                    float enemyTop = startY;
+                    float enemyBottom = startY + 120;
+                
+                    if ((enemyRight < playerLeft ||
+                          enemyLeft > playerRight ||
+                          enemyTop > playerBottom ||
+                          enemyBottom < playerTop))
+                    {
+                        goodStart = true;
+                    }
+                }
+                int enemySeed = rand.Next(0, 5000);
                 enemies.Add(new Enemy(player, startX, startY, enemySeed));
             }
             foreach (Enemy enemy in enemies)
