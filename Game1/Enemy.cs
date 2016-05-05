@@ -68,6 +68,8 @@ namespace Game1
                     }
                 }
             }
+            Width = image.Width;
+            Height = image.Height;
             moveAnimation.LoadContent(content, image, "", position);
             base.LoadContent(content, input);
         }

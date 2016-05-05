@@ -59,10 +59,11 @@ namespace Game1
             inputManager.Update();
             player.Update(gameTime, inputManager);
             enemy.Update(gameTime, inputManager);
-<<<<<<< HEAD
+            float enemyRight = enemy.position.X + enemy.Width;
+            float enemyLeft = enemy.position.X;
+            float enemyTop = enemy.position.Y;
+            float enemyBottom = enemy.position.Y + enemy.Height;
 
-=======
->>>>>>> origin/master
             if (inputManager.KeyPressed(Keys.Space))
             {
                 Vector2 velocity = new Vector2();
@@ -82,6 +83,7 @@ namespace Game1
                         velocity = new Vector2(10, 0);
                         break;
                 }
+               
 
                 stars.Add(new NinjaStar(shurikenTexture, velocity, player.position, 0));
 
@@ -91,6 +93,8 @@ namespace Game1
             foreach (NinjaStar star in stars)
             {
                 star.Update();
+           
+                
             }
             
             

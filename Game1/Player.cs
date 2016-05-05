@@ -63,6 +63,8 @@ namespace Game1
                 }
             }
             moveAnimation.LoadContent(content, image, "", position);
+            Width = image.Width;
+            Height = image.Height;
 
         }
         public override void Initialize()
