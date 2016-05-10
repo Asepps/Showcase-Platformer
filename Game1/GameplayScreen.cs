@@ -45,7 +45,7 @@ namespace Game1
             shurikenTexture = content.Load<Texture2D>("Shuriken");
             
             enemies = new List<Enemy>();
-            for (int i = 0; i < 500; i++)
+            for (int i = 0; i < 50; i++)
             {
                 bool goodStart = false;
                 int startX=0;
