@@ -53,7 +53,7 @@ namespace Game1
             this.position = position;
             if (text != String.Empty)
                 font = content.Load<SpriteFont>("Menu");
-            color = new Color(114, 77, 255);
+            color = new Color(0, 0, 0);
             if (image != null)
                 sourceRect = new Rectangle(0 , 0 ,image.Width, image.Height);
 

@@ -6,9 +6,7 @@ Load = [Item][LinkType][LinkID]
 
 
 
-[New Game][Screen][GameplayScreen]
-[Load Game][Screen][SplashScreen]
-[Options][Screen][SplashScreen]
-[Credits][Screen][SplashScreen]
+[Play][Screen][GameplayScreen]
+
 
 EndLoad = [Title]
