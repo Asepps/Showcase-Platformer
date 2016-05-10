@@ -27,6 +27,7 @@ namespace Game1
             fileManager = new FileManager();
             moveAnimation = new SpriteSheetAnimation();
             Vector2 tempFrames = Vector2.Zero;
+
             
             rightWalk = content.Load<Texture2D>("Ninjaright");
             leftWalk = content.Load<Texture2D>("NinjaLeft");
@@ -34,7 +35,7 @@ namespace Game1
             downWalk = content.Load<Texture2D>("NinjaDown");
 
             currentWalk = rightWalk;
-            
+            direction = Direction.right;
 
             fileManager.LoadContent("../../../../Load/Player.cme", attributes, contents);
             for (int i = 0; i < attributes.Count; i++)
