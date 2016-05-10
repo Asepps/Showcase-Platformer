@@ -26,6 +26,9 @@ namespace Game1
         private List<Enemy> enemies;
         private List<NinjaStar> stars;
         private Texture2D shurikenTexture;
+        private bool isAlive = true;
+
+        SpriteFont deathFont;
 
         public override void LoadContent(ContentManager content, InputManager input)
         {
@@ -34,6 +37,7 @@ namespace Game1
             layer = new Layers();
             player.LoadContent(content, input);
             layer.LoadContent(content, "../../../../../../Load/Maps/Map1");
+            deathFont = content.Load<SpriteFont>("DeathFont");
             Random rand = new Random();
 
             stars = new List<NinjaStar>();
@@ -41,11 +45,33 @@ namespace Game1
             shurikenTexture = content.Load<Texture2D>("Shuriken");
             
             enemies = new List<Enemy>();
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 500; i++)
             {
-                int startX = rand.Next(10, 600);
-                int startY = rand.Next(10, 600);
-                int enemySeed = rand.Next(0,5000);
+                bool goodStart = false;
+                int startX=0;
+                int startY=0;
+                while(!goodStart){
+                    startX = rand.Next(10, 600);
+                    startY = rand.Next(10, 600);
+ 
+                    float playerRight = player.position.X + player.Width +100;
+                    float playerLeft = player.position.X;
+                    float playerTop = player.position.Y;
+                    float playerBottom = player.position.Y + player.Height+100;
+                    float enemyRight =startX + 120;
+                    float enemyLeft = startX;
+                    float enemyTop = startY;
+                    float enemyBottom = startY + 120;
+                
+                    if ((enemyRight < playerLeft ||
+                          enemyLeft > playerRight ||
+                          enemyTop > playerBottom ||
+                          enemyBottom < playerTop))
+                    {
+                        goodStart = true;
+                    }
+                }
+                int enemySeed = rand.Next(0, 5000);
                 enemies.Add(new Enemy(player, startX, startY, enemySeed));
             }
             foreach (Enemy enemy in enemies)
@@ -66,85 +92,88 @@ namespace Game1
 
         public override void Update(GameTime gameTime)
         {
-            inputManager.Update();
-            player.Update(gameTime, inputManager);
-            float playerRight = player.position.X + player.Width;
-            float playerLeft = player.position.X;
-            float playerTop = player.position.Y;
-            float playerBottom = player.position.Y + player.Height;
-            if (inputManager.KeyPressed(Keys.Space))
+            if (isAlive)
             {
-                Vector2 velocity = new Vector2();
-
-                switch (player.direction)
+                inputManager.Update();
+                player.Update(gameTime, inputManager);
+                float playerRight = player.position.X + player.Width;
+                float playerLeft = player.position.X;
+                float playerTop = player.position.Y;
+                float playerBottom = player.position.Y + player.Height;
+                if (inputManager.KeyPressed(Keys.Space))
                 {
-                    case Direction.up:
-                        velocity = new Vector2(0, -10);
-                        break;
-                    case Direction.down:
-                        velocity = new Vector2(0, 10);
-                        break;
-                    case Direction.left:
-                        velocity = new Vector2(-10, 0);
-                        break;
-                    case Direction.right:
-                        velocity = new Vector2(10, 0);
-                        break;
+                    Vector2 velocity = new Vector2();
+
+                    switch (player.direction)
+                    {
+                        case Direction.up:
+                            velocity = new Vector2(0, -10);
+                            break;
+                        case Direction.down:
+                            velocity = new Vector2(0, 10);
+                            break;
+                        case Direction.left:
+                            velocity = new Vector2(-10, 0);
+                            break;
+                        case Direction.right:
+                            velocity = new Vector2(10, 0);
+                            break;
+                    }
+
+                    stars.Add(new NinjaStar(shurikenTexture, velocity, player.position, 0));
+
                 }
-
-                stars.Add(new NinjaStar(shurikenTexture, velocity, player.position, 0));
-
-            }
-            foreach (Enemy enemy in enemies)
-            {
-                float enemyRight = enemy.position.X + enemy.Width;
-                float enemyLeft = enemy.position.X;
-                float enemyTop = enemy.position.Y;
-                float enemyBottom = enemy.position.Y + enemy.Height;
-                enemy.Update(gameTime, inputManager);
-                if (!(enemyRight < playerLeft ||
-                      enemyLeft > playerRight ||
-                      enemyTop > playerBottom ||
-                      enemyBottom < playerTop))
-                {
-                    //
-                }
-
-            }
-            List<Enemy> enemeisToRemove = new List<Enemy>();
-            List<NinjaStar> starsToRemove = new List<NinjaStar>();
-            foreach (NinjaStar star in stars)
-            {
-
-                star.Update();
-                float starRight = star.position.X + star.Width;
-                float starLeft = star.position.X;
-                float starTop = star.position.Y;
-                float starBottom = star.position.Y + star.Height;
                 foreach (Enemy enemy in enemies)
                 {
                     float enemyRight = enemy.position.X + enemy.Width;
                     float enemyLeft = enemy.position.X;
                     float enemyTop = enemy.position.Y;
                     float enemyBottom = enemy.position.Y + enemy.Height;
-                    if (!(starRight < enemyLeft ||
-                        starLeft > enemyRight ||
-                        starTop > enemyBottom ||
-                        starBottom < enemyTop))
+                    enemy.Update(gameTime, inputManager);
+                    if (!(enemyRight < playerLeft ||
+                          enemyLeft > playerRight ||
+                          enemyTop > playerBottom ||
+                          enemyBottom < playerTop))
                     {
-                        enemeisToRemove.Add(enemy);
-                        starsToRemove.Add(star);
+                        isAlive = false;
                     }
-                }
 
-            }
-            foreach (Enemy enemy in enemeisToRemove)
-            {
-                enemies.Remove(enemy);
-            }
-            foreach (NinjaStar star in starsToRemove)
-            {
-                stars.Remove(star);
+                }
+                List<Enemy> enemeisToRemove = new List<Enemy>();
+                List<NinjaStar> starsToRemove = new List<NinjaStar>();
+                foreach (NinjaStar star in stars)
+                {
+
+                    star.Update();
+                    float starRight = star.position.X + star.Width;
+                    float starLeft = star.position.X;
+                    float starTop = star.position.Y;
+                    float starBottom = star.position.Y + star.Height;
+                    foreach (Enemy enemy in enemies)
+                    {
+                        float enemyRight = enemy.position.X + enemy.Width;
+                        float enemyLeft = enemy.position.X;
+                        float enemyTop = enemy.position.Y;
+                        float enemyBottom = enemy.position.Y + enemy.Height;
+                        if (!(starRight < enemyLeft ||
+                            starLeft > enemyRight ||
+                            starTop > enemyBottom ||
+                            starBottom < enemyTop))
+                        {
+                            enemeisToRemove.Add(enemy);
+                            starsToRemove.Add(star);
+                        }
+                    }
+
+                }
+                foreach (Enemy enemy in enemeisToRemove)
+                {
+                    enemies.Remove(enemy);
+                }
+                foreach (NinjaStar star in starsToRemove)
+                {
+                    stars.Remove(star);
+                }
             }
         }
 
@@ -161,6 +190,11 @@ namespace Game1
             foreach (NinjaStar star in stars)
             {
                 star.Draw(spriteBatch);
+            }
+
+            if (!isAlive)
+            {
+                spriteBatch.DrawString(deathFont, "YOU DIED!", new Vector2(400, 320) - deathFont.MeasureString("YOU DIED!") / 2, Color.Red);
             }
         }
     }

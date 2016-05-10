@@ -169,7 +169,6 @@
 /processorParam:TextureFormat=Color
 /build:Shuriken.png
 
-
 #begin EnemyNinjaLeft.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -205,4 +204,10 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:EnemyNinjaDown.png
+
+#begin DeathFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:DeathFont.spritefont
 
