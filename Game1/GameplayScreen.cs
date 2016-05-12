@@ -162,7 +162,7 @@ namespace Game1
                         {
                             enemeisToRemove.Add(enemy);
                             starsToRemove.Add(star);
-                        }
+                        }3dr 
                     }
 
                 }
@@ -196,6 +196,7 @@ namespace Game1
             {
                 spriteBatch.DrawString(deathFont, "YOU DIED!", new Vector2(400, 320) - deathFont.MeasureString("YOU DIED!") / 2, Color.Red);
             }
+            
         }
     }
 }
