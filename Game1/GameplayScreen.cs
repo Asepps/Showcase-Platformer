@@ -162,7 +162,7 @@ namespace Game1
                         {
                             enemeisToRemove.Add(enemy);
                             starsToRemove.Add(star);
-                        }3dr 
+                        }
                     }
 
                 }
