@@ -194,7 +194,7 @@ namespace Game1
 
             if (!isAlive)
             {
-                spriteBatch.DrawString(deathFont, "YOU DIED!", new Vector2(400, 320) - deathFont.MeasureString("YOU DIED!") / 2, Color.Red);
+                spriteBatch.DrawString(deathFont, "YOU DIED!!", new Vector2(400, 320) - deathFont.MeasureString("YOU DIED!!") / 2, Color.Red);
             }
             
         }
